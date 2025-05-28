@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa para Você 💌</title>
+    <style>
+        body {
+            background-color: #ffe6f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .top-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100px;
+            background-color: #ff99cc;
+            transform-origin: bottom;
+            transition: transform 1s;
+            z-index: 4;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+        }
+
+        .bottom {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 300px;
+            height: 100px;
+            background-color: #ff66b2;
+            z-index: 1;
+        }
+
+        .side-left {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 150px;
+            height: 100px;
+            background-color: #ff80bf;
+            clip-path: polygon(0 0, 100% 100%, 0% 100%);
+            z-index: 2;
+        }
+
+        .side-right {
+            position: absolute;
+            top: 100px;
+            right: 0;
+            width: 150px;
+            height: 100px;
+            background-color: #ff80bf;
+            clip-path: polygon(100% 0, 100% 100%, 0% 100%);
+            z-index: 2;
+        }
+
+        .message {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            width: 280px;
+            background-color: #fff;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 1s, transform 1s;
+            z-index: 3;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 1.1rem;
+            color: #ff3399;
+        }
+
+        .message img {
+            width: 150px;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .envelope.open .top-flap {
+            transform: rotateX(-180deg);
+        }
+
+        .envelope.open .message {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-200px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope" onclick="openEnvelope()">
+        <div class="top-flap"></div>
+        <div class="bottom"></div>
+        <div class="side-left"></div>
+        <div class="side-right"></div>
+        <div class="message">
+            💖 Faltam 3 dias para o seu aniversário, meu amor! 🎉✨
+            <img src="gatinho.gif" alt="Gatinho fofo">
+        </div>
+    </div>
+
+    <audio id="som">
+        <source src="som.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <script>
+        function openEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const som = document.getElementById('som');
+
+            envelope.classList.toggle('open');
+            som.play();
+        }
+    </script>
+
+</body>
+</html>
